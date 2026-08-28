@@ -1,13 +1,12 @@
-﻿using System;
-using Microsoft.VisualBasic;
-using Monsters;
+﻿using Monsters;
 
 class Program
 {
+    // def is only percent
     static void Main(string[] args)
     {
-        Entity player = new Skeleton();
-        Entity enemy = new Zombie();
+        Entity player = new Skeleton(100, 20);
+        Entity enemy = new Zombie(300, 50);
         bool isEnemyDead = false;
         
         Console.WriteLine("적이 나타났다! 무엇을 하면 좋을까? \n1. 공격\n2. 회복");

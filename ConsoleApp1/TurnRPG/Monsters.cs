@@ -28,15 +28,33 @@
         
         
         public bool isDead() => this.hp <= 0;
+
+        public Entity(float hp, float def)
+        {
+            this.hp = hp;
+            this.def = def;
+        }
     }
 
     public class Skeleton : Entity
     {
-
+        public Skeleton(float hp, float def) : base(hp, def)
+        {
+        }
     }
 
     public class Zombie : Entity
     {
-        
+        public Zombie(float hp, float def) : base(hp, def)
+        {
+        }
+
+    }
+
+    public class Player : Entity
+    {
+        public Player(float hp, float def) : base(hp, def)
+        {
+        }
     }
 }
