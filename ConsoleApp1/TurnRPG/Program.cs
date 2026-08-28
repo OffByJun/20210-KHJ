@@ -9,6 +9,8 @@ class Program
         Entity player = new Skeleton();
         Entity enemy = new Zombie();
         bool isEnemyDead = false;
+        
+        Console.WriteLine("적이 나타났다! 무엇을 하면 좋을까? \n1. 공격\n2. 회복");
 
         while (!isEnemyDead)
         {
