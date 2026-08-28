@@ -1,4 +1,5 @@
 ﻿using System;
+using Microsoft.VisualBasic;
 using Monsters;
 
 class Program
@@ -12,6 +13,7 @@ class Program
         while (!isEnemyDead)
         {
             string input = Console.ReadLine();
+            
             
             switch (input)
             {
@@ -27,16 +29,16 @@ class Program
 
             if (enemy.isDead())
             {
+                Console.WriteLine("Enemy is Dead");
                 break;
             }
         }
-        
-        Console.WriteLine("Enemy is Dead");
     }
 
     public static void PrintStasis(interactionResult msg)
     {
         Console.WriteLine($"{msg.actingType.ToString()} 대상: {msg.target}");
-        Console.WriteLine($"행동 값: {msg.value}");
+        Console.WriteLine($"행동 값: {msg.value}"); 
+        Console.WriteLine($"남은 체력: {msg.target.hp}");
     }
 }

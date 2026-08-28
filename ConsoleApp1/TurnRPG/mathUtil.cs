@@ -2,9 +2,15 @@
 
 public static class mathUtil
 {
-    public static bool critical(int min = 0, int max = 100)
+    public static bool critical(int min = 0, int max = 100, int target = 50)
     {
         Random rnd = new Random();
-        return rnd.Next(min, max) == 0;
+        return rnd.Next(min, max) < target;
+    }
+
+    public static int RandomInt(int min = 0, int max = 100)
+    {
+        Random rnd = new Random();
+        return rnd.Next(min, max);
     }
 }
