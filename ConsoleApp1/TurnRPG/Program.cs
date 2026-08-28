@@ -36,7 +36,7 @@ class Program
 
     public static void PrintStasis(interactionResult msg)
     {
-        Console.WriteLine($"행동 대상: {msg.target}");
+        Console.WriteLine($"{msg.actingType.ToString()} 대상: {msg.target}");
         Console.WriteLine($"행동 값: {msg.value}");
     }
 }

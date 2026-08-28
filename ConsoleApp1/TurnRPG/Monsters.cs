@@ -22,7 +22,7 @@
             target.hp -= atk;
             
 
-            return new interactionResult(target, atk);
+            return new interactionResult(target, atk, actingType.Attack);
         }
 
         public override interactionResult Regenerate(Entity target)
@@ -32,7 +32,7 @@
             float hp = rnd.Next(0, 100);
             target.hp += hp;
 
-            return new interactionResult(target, hp);
+            return new interactionResult(target, hp, actingType.Regenerate);
         }
     }
 
@@ -46,7 +46,7 @@
             float atk = rnd.Next(0, 100) * (critical ? 1 : 2);
             target.hp -= atk;
 
-            return new interactionResult(target, atk);
+            return new interactionResult(target, atk, actingType.Attack);
         }
 
         public override interactionResult Regenerate(Entity target)
@@ -56,7 +56,7 @@
             float hp = rnd.Next(0, 100);
             target.hp += hp;
 
-            return new interactionResult(target, hp);
+            return new interactionResult(target, hp, actingType.Regenerate);
         }
     }
 }
