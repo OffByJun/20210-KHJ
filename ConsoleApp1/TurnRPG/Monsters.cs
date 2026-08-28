@@ -2,7 +2,7 @@
 {
     public abstract class Entity
     {
-        public float hp { get; set; }
+        public float hp = 100.0f;
         
 
         public abstract interactionResult Attack(Entity target);
