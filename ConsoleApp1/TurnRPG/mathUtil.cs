@@ -13,4 +13,7 @@ public static class mathUtil
         Random rnd = new Random();
         return rnd.Next(min, max);
     }
+
+    public static float ApplyDef(float def, float dmg)
+        => dmg / def;
 }
