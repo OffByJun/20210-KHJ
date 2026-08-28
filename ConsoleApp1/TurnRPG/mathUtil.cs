@@ -1,6 +1,6 @@
 ﻿public static class mathUtil
 {
-    public static bool critical(int min = 0, int max = 100, int target = 50)
+    public static bool Critical(int min = 0, int max = 100, int target = 50)
     {
         Random rnd = new Random();
         return rnd.Next(min, max) < target;

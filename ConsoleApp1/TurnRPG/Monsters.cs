@@ -7,7 +7,7 @@
         
         public interactionResult Attack(Entity target)
         {
-            bool critical = mathUtil.critical();
+            bool critical = mathUtil.Critical();
             float atk = mathUtil.RandomInt(0, 50) * (critical ? 1 : 2);
             target.GetDmg(atk);
             

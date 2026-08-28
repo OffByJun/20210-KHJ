@@ -5,7 +5,7 @@ class Program
     // def is only percent
     static void Main(string[] args)
     {
-        Entity player = new Skeleton(100, 20);
+        Entity player = new Player(100, 20);
         Entity enemy = new Zombie(300, 50);
         bool isEnemyDead = false;
         
