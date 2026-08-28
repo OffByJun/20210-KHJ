@@ -5,7 +5,6 @@ class Program
 {
     static void Main(string[] args)
     {
-        
         Entity player = new Skeleton();
         Entity enemy = new Zombie();
         bool isEnemyDead = false;

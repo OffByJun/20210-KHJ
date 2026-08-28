@@ -17,8 +17,10 @@
         {
             Random rnd = new Random();
 
-            float atk = rnd.Next(0, 100);
+            bool critical = rnd.Next(0, 100) < 50;
+            float atk = rnd.Next(0, 100) * (critical ? 1 : 2);
             target.hp -= atk;
+            
 
             return new interactionResult(target, atk);
         }
@@ -39,8 +41,9 @@
         public override interactionResult Attack(Entity target)
         {
             Random rnd = new Random();
-
-            float atk = rnd.Next(0, 100);
+            
+            bool critical = rnd.Next(0, 100) < 50;
+            float atk = rnd.Next(0, 100) * (critical ? 1 : 2);
             target.hp -= atk;
 
             return new interactionResult(target, atk);
