@@ -1,9 +1,8 @@
-using System;
-using System.Collections.Generic;
 using System.Text;
 using _001_Scripts.Entity;
 using _001_Scripts.ETC;
 using UnityEngine;
+using static _001_Scripts.Utils.MathUtil;
 
 public class GameManager : MonoBehaviour
 {
@@ -14,8 +13,8 @@ public class GameManager : MonoBehaviour
 
     [SerializeField] private Transform spawnPoint;
 
+    [SerializeField] private EntityBase player;
     private EntityBase enemy;
-    private EntityBase player;
 
     private void Start()
     {
@@ -26,23 +25,46 @@ public class GameManager : MonoBehaviour
         enemy = obj.GetComponent<EntityBase>();
         
         Debug.Log($"{enemy.hp} {enemy.def}");
-        Debug.Log($"{entityPrefab.GetType().Name} is appear! what should I do?");
+        Debug.Log($"{entityPrefab.GetType().Name} is appeared! what should I do?");
+    }
+
+    private void NextTurn()
+    {
+        turn++;
+
+        
+        if (turn % 2 == 1) // 홀수 감지용
+        {
+            Debug.Log(BuildText(enemy.Attack(player)));
+
+            if (enemy.hp < 10 && RandomInt() < 50)
+            {
+                Debug.Log(BuildText(enemy.Regenerate(player)));
+                NextTurn();
+            }
+            else
+            {
+                Debug.Log(BuildText(enemy.Attack(player)));
+                NextTurn();
+            }
+
+            if (enemy.isDead())
+                Debug.Log("enemy is dead");
+            else if (player.isDead())
+                Debug.Log("player is dead");
+        }
     }
 
     public void Attack()
     {
         Debug.Log($"{BuildText(player.Attack(enemy))}");
-        
-        if (enemy.isDead())
-            Debug.Log("Game end");
-        
-        turn++;
+        NextTurn();
     }
 
     public void Regenerate()
     {
         Debug.Log($"{BuildText(player.Regenerate(player))}");
-        turn++;
+        NextTurn();
     }
 
 
