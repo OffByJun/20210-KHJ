@@ -71,9 +71,20 @@ namespace SchoolEscape.UI
             GUI.Label(new Rect(24f, 18f, 320f, 45f), $"COIN SCORE  {_score}", _labelStyle);
             GUI.Label(new Rect(Screen.width - 260f, 18f, 236f, 45f), $"TIME  {_elapsedTime:0.0}", _labelStyle);
             GUI.Label(new Rect(Screen.width * 0.5f - 110f, 18f, 220f, 45f), $"FALLS  {_deaths}", _centeredStyle);
-            string message = _state == LevelState.Cleared
-                ? $"COURSE CLEAR!  {_elapsedTime:0.0}s\nPress R to retry"
-                : "Arrow Keys / A,D: Move     Space: Jump";
+            string message = "";
+
+            switch (_state)
+            {
+                case LevelState.Cleared:
+                    message = $"COURSE CLEAR!  {_elapsedTime:0.0}s\nPress R to retry";
+                    break;
+                case LevelState.Dead:
+                    message = $"FAILED! {_elapsedTime:0.0}s\nPress R to retry}}";
+                    break;
+                default:
+                    message = "Arrow Keys / A,D: Move     Space: Jump \\";
+                    break;
+            }
             GUI.Label(new Rect(0f, Screen.height - 82f, Screen.width, 70f), message, _centeredStyle);
         }
 

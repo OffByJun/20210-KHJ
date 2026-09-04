@@ -9,18 +9,13 @@ namespace SchoolEscape.Core
 {
     public sealed class LevelController : MonoBehaviour
     {
-        [SerializeField]
-        private PlayerLife _playerLife;
-        [SerializeField]
-        private RespawnManager _respawnManager;
-        [SerializeField]
-        private ScoreManager _scoreManager;
-        [SerializeField]
-        private LevelTimer _levelTimer;
-        [SerializeField]
-        private GoalFlag _goalFlag;
-        [SerializeField, Min(0f)]
-        private float _respawnDelay = 0.7f;
+        [SerializeField] private PlayerLife _playerLife;
+        [SerializeField] private RespawnManager _respawnManager;
+        [SerializeField] private ScoreManager _scoreManager;
+        [SerializeField] private LevelTimer _levelTimer;
+        [SerializeField] private GoalFlag _goalFlag;
+        [SerializeField, Min(0f)] private float _respawnDelay = 0.7f;
+        [SerializeField] private int _deathNumber = 3;
 
         public event Action<LevelState> StateChanged;
         public LevelState State { get; private set; } = LevelState.Ready;
@@ -55,6 +50,11 @@ namespace SchoolEscape.Core
 
         private void HandlePlayerDied()
         {
+            if (_deathNumber < _playerLife.DeathCount)
+            {
+                GameOver();
+            }
+
             if (State == LevelState.Playing)
             {
                 StartCoroutine(RespawnAfterDelay());
@@ -65,6 +65,20 @@ namespace SchoolEscape.Core
         {
             yield return new WaitForSeconds(_respawnDelay);
             _playerLife.RespawnAt(_respawnManager.CurrentSpawnPosition);
+        }
+
+        private void GameOver()
+        {
+            if (State != LevelState.Playing)
+            {
+                return;
+            }
+
+            State = LevelState.Dead;
+            _levelTimer.StopTimer();
+            _playerLife.SetControlEnabled(false);
+            StateChanged?.Invoke(State);
+            Debug.Log("Game Over");
         }
 
         private void CompleteLevel()

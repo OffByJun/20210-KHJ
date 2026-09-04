@@ -4,6 +4,7 @@ namespace SchoolEscape.Core
     {
         Ready,
         Playing,
-        Cleared
+        Cleared,
+        Dead
     }
 }
